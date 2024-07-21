@@ -9,6 +9,7 @@ import com.springboot.blog.service.PostService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -62,10 +63,15 @@ public class PostServiceImpl implements PostService {
     }
 
 //-------------------------------------------------------------------------------
-    // get all post with pagination
-    public PostResponse getAllPostPagination(int pageNo, int pageSize) {
+    // get all post with pagination and sorting
+    public PostResponse getAllPostPagination(int pageNo, int pageSize, String sortBy, String sortDir) {
+
+        // dynamic sorting feature
+        Sort sort=sortDir.equalsIgnoreCase(Sort.Direction.ASC.name())? Sort.by(sortBy).ascending()
+                : Sort.by(sortBy).descending();
         // pageable Instance
-        Pageable pageable=PageRequest.of(pageNo, pageSize);
+        Pageable pageable=PageRequest.of(pageNo, pageSize, sort); // sort in ascending
+         // pageable=PageRequest.of(pageNo, pageSize, Sort.by(sortBy).descending()); // sort in descending
 
         // passing pageable instance to find all
         Page<Post> posts=postRepository.findAll(pageable);
