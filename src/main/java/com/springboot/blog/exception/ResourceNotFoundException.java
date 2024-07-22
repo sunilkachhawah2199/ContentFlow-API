@@ -1,5 +1,6 @@
 package com.springboot.blog.exception;
 
+import lombok.Data;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -7,7 +8,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 // we extend from RuntimeException --> for custom exception
 
 
-//response status  annotation cause spring boot to respond w ith the specified http status code whenever this exception thrown from computer
+//response status  annotation cause spring boot to respond with the specified http status code whenever this exception thrown from computer
+
+@Data
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
 public class ResourceNotFoundException extends RuntimeException{
 //    parameter of exception message
@@ -22,17 +25,5 @@ public class ResourceNotFoundException extends RuntimeException{
         this.resourceName = resourceName;
         this.fieldName = fieldName;
         this.fieldValue = fieldValue;
-    }
-
-    public String getResourceName() {
-        return resourceName;
-    }
-
-    public String getFieldName() {
-        return fieldName;
-    }
-
-    public Long getFieldValue() {
-        return fieldValue;
     }
 }
