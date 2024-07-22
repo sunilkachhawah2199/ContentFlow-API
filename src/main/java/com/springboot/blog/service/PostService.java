@@ -15,7 +15,7 @@ public interface PostService {
     // method to get all posy with paging
 
     // pageSize --> means how many data on 1 page like in 10 data if pageSize=5 then next 5 entry will be on next page
-    PostResponse getAllPostPagination(int PageNo, int pageSize);
+    PostResponse getAllPostPagination(int PageNo, int pageSize, String sortBy, String sortDir);
 
     // method to get post by id
     PostDto getPostById(Long id);
