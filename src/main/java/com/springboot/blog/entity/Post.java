@@ -39,7 +39,7 @@ public class Post {
     @Column(name = "content", nullable = false)
     private String content;
 
-    // set means maintain only unique comment
+    // set means maintain only unique comment--> if any parameter is different then this is different
     // mappedBy --> post is here in owning relation in bidirectional relation
     // if post not exist then comment will also not exist --> cascast.ALl relation
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)

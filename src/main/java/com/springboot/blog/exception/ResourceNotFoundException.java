@@ -19,7 +19,7 @@ public class ResourceNotFoundException extends RuntimeException{
     private Long fieldValue;
 
 //    all arg constructor
-    public ResourceNotFoundException(String resourceName, String fieldName, Long fieldValue) {
+    public ResourceNotFoundException(String resourceName, String fieldName, long fieldValue) {
         // message in super class
         super(String.format("%s not found with %s: '%s'", resourceName, fieldName, fieldValue)); //post not found with id: '1'
         this.resourceName = resourceName;

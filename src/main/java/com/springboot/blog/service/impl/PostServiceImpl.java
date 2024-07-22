@@ -97,7 +97,8 @@ public class PostServiceImpl implements PostService {
     @Override
     public PostDto getPostById(Long id) {
         // find by provide optional class
-        Post post=postRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Psot","id", id));
+        Post post=postRepository.findById(id).orElseThrow(
+                ()-> new ResourceNotFoundException("Post","id", id));
         //convert entity into dto
         return mapToDTO(post);
     }
@@ -106,7 +107,8 @@ public class PostServiceImpl implements PostService {
     @Override
     public PostDto updatePost(Long id, PostDto postDto) {
         // for upadting post first we will get post
-        Post post=postRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("post", "id", id));
+        Post post=postRepository.findById(id).orElseThrow(
+                ()->new ResourceNotFoundException("post", "id", id));
 
         // post attribution updated
         post.setTitle(postDto.getTitle());
