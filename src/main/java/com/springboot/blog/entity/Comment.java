@@ -30,8 +30,8 @@ public class Comment {
 
     // we need to create 1 to many relation between post and comment
     // FetchType.Lazy --> it means that the related data will not be loaded from the database until it is accessed for the first time (i.e., it is loaded on demand).
-    @ManyToOne(fetch = FetchType.LAZY)
 
+    @ManyToOne(fetch = FetchType.LAZY)
     // @JoinColumn --> used for foreign key
     @JoinColumn(name = "post_id", nullable = false)
     private Post post;
