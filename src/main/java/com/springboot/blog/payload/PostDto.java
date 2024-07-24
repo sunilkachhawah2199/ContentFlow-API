@@ -6,6 +6,7 @@ import lombok.Data;
 @Data // no need get, set
 public class PostDto {
 //    private long id; --> no need for client | it is primary key
+    private long id;
     private String title;
     private String description;
     private String content;

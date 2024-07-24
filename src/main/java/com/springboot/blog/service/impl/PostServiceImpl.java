@@ -6,6 +6,7 @@ import com.springboot.blog.payload.PostDto;
 import com.springboot.blog.payload.PostResponse;
 import com.springboot.blog.repository.PostRepository;
 import com.springboot.blog.service.PostService;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -22,8 +23,12 @@ public class PostServiceImpl implements PostService {
 // we save data into db repository which extends jpa repo. have all queries related method in this so we use this is service layer
     private PostRepository postRepository;
 
-    public PostServiceImpl(PostRepository postRepository) {
+    // instance of model mapper
+    private ModelMapper mapper;
+
+    public PostServiceImpl(PostRepository postRepository, ModelMapper mapper) {
         this.postRepository = postRepository;
+        this.mapper=mapper;
     }
 
 
@@ -130,21 +135,15 @@ public class PostServiceImpl implements PostService {
     }
 
 
-    // method to convert entity into DTO
+    // method to convert entity into DTO using model mapper
     private PostDto mapToDTO(Post post){
-        PostDto postDto=new PostDto();
-        postDto.setTitle(post.getTitle());
-        postDto.setDescription(post.getDescription());
-        postDto.setContent(post.getDescription());
+        PostDto postDto=mapper.map(post, PostDto.class);
         return postDto;
     }
 
     // method to convert  dto into entity
     private Post mapToEntity(PostDto postDto){
-        Post post=new Post();
-        post.setTitle(postDto.getTitle());
-        post.setDescription(postDto.getDescription());
-        post.setContent(postDto.getDescription());
-        return post;
+        // take source: object && destination: class
+        return mapper.map(postDto, Post.class);
     }
 }
