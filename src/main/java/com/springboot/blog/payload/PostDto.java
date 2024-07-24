@@ -2,6 +2,8 @@ package com.springboot.blog.payload;
 
 import lombok.Data;
 
+import java.util.Set;
+
 //we will add that data which  need to return to client and get from client
 @Data // no need get, set
 public class PostDto {
@@ -10,4 +12,5 @@ public class PostDto {
     private String title;
     private String description;
     private String content;
+    private Set<CommentDto> comments;
 }
