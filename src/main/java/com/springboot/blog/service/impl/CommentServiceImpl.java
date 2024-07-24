@@ -112,6 +112,8 @@ public class CommentServiceImpl implements CommentService {
         return mapToDto(updatedComment);
     }
 
+
+    // method --> delete comment for post
     @Override
     public void deleteComment(long postId, long commentId) {
         // check post validity
