@@ -29,8 +29,8 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
-    // any excepiton we ahve not handled then this exception will be returned
-    // excepiton ike --> method argument not found exception type
+    // any excepiton we have not handled then this exception will be returned
+    // excepiton  --> method argument not found exception type
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorDetails> handleGlobalException(Exception ex, WebRequest webRequest) {
         ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), webRequest.getDescription(false));
