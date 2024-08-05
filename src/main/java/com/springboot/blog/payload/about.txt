@@ -1,0 +1,6 @@
+--------------------------  DTO  ---------------------
+dto: data transfer object
+we put that data which we sent to client or get from client
+generally we don't expose our all entity variable to clients
+rest api change entity into dto and then send dto object to client as response.
+we can hide implementation details by using dto object
