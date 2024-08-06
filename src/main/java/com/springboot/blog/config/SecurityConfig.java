@@ -45,7 +45,7 @@ public class SecurityConfig {
         // sunil is admin
         UserDetails sunil= User.builder()
                 .username("sunil")
-                .password(passwordEncoder().encode("sunil"))
+                .password(passwordEncoder().encode("sunil "))
                 .roles("ADMIN")
                 .build();
         // anil is simple user
