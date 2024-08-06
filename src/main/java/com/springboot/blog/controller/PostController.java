@@ -4,6 +4,7 @@ import com.springboot.blog.payload.PostDto;
 import com.springboot.blog.payload.PostResponse;
 import com.springboot.blog.service.PostService;
 import com.springboot.blog.utils.AppConstants;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,7 @@ public class PostController {
     // create post api
     @PostMapping("/")
     // response entity is generic type
-    public ResponseEntity<PostDto> create(@RequestBody PostDto postDto){
+    public ResponseEntity<PostDto> create(@Valid @RequestBody PostDto postDto){
         // method of postService which return PostDto
         PostDto res=postService.createPost(postDto);
         return new ResponseEntity<>(res, HttpStatus.CREATED);
@@ -37,7 +38,7 @@ public class PostController {
     // get all post without paging and sorting
     // controller to get all posts
     // if we don't specify status code then it will return status code 200
-    @GetMapping
+    @GetMapping("/")
     public List<PostDto> getAll(){
         return postService.getAllPost();
     }
@@ -63,7 +64,7 @@ public class PostController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PostDto> updatePost(@PathVariable(name = "id") long id, @RequestBody PostDto postDto){
+    public ResponseEntity<PostDto> updatePost(@PathVariable(name = "id") long id,@Valid @RequestBody PostDto postDto){
         PostDto res=postService.updatePost(id, postDto);
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
