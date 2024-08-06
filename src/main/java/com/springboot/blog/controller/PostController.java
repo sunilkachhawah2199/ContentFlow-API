@@ -38,7 +38,7 @@ public class PostController {
     // get all post without paging and sorting
     // controller to get all posts
     // if we don't specify status code then it will return status code 200
-    @GetMapping
+    @GetMapping("/")
     public List<PostDto> getAll(){
         return postService.getAllPost();
     }
