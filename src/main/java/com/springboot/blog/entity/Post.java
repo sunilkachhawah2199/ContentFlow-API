@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -29,6 +28,7 @@ public class Post {
     private long id;
 
     // column name in table
+    // if we don't specify the column name then it will take the variable name as column name
     @Column(name = "title", nullable = false)
     private String title;
 
