@@ -2,6 +2,7 @@ package com.springboot.blog.controller;
 
 
 import com.springboot.blog.payload.LoginDto;
+import com.springboot.blog.payload.RegisterDto;
 import com.springboot.blog.service.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,13 @@ public class AuthController {
     public ResponseEntity<String> login(@RequestBody LoginDto loginDto){
         String res=authService.login(loginDto);
         return ResponseEntity.ok(res);
+    }
+
+    // register method
+    @PostMapping(value = {"/register", "/signup"})
+    public ResponseEntity<String> register(@RequestBody RegisterDto registerDto){
+        String res=authService.register(registerDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(res);
     }
 
 }
