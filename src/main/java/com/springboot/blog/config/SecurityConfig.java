@@ -55,8 +55,11 @@ public class SecurityConfig {
             // Configures authorization rules
             .authorizeHttpRequests(authorize -> authorize
                     .requestMatchers(HttpMethod.GET,"api/posts/**").permitAll() // permit all get request
+                    // permit all request for auth
+                    .requestMatchers("/api/auth/**").permitAll() // permit all request for auth
                 // Requires authentication for all other requests
                 .anyRequest().authenticated())
+
                 .httpBasic(Customizer.withDefaults()); // Configures HTTP Basic authentication | form will popup for id and password
         return http.build(); // Builds the SecurityFilterChain object
     }
