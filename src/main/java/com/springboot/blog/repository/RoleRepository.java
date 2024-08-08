@@ -7,5 +7,5 @@ import java.util.Optional;
 
 // take 2 parameter first is entity and second is primary key type
 public interface RoleRepository extends JpaRepository<Role, Long> {
-    Optional<Role> findByRole(String role);
+    Optional<Role> findByName(String name);
 }
