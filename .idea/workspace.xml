@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="97c37180-3108-43e8-bd92-1597df9ef9bb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/blog/entity/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/blog/entity/Post.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/springboot/blog/entity/Post.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/springboot/blog/entity/Post.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +16,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -132,7 +131,7 @@
       <workItem from="1723101960562" duration="626000" />
       <workItem from="1723102994448" duration="22000" />
       <workItem from="1723104571447" duration="9000" />
-      <workItem from="1723106206068" duration="2320000" />
+      <workItem from="1723106206068" duration="3000000" />
     </task>
     <servers />
   </component>
