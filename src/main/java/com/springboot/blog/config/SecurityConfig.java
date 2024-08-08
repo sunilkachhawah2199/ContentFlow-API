@@ -3,9 +3,12 @@ package com.springboot.blog.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,10 +23,26 @@ import org.springframework.context.annotation.Bean;
 public class SecurityConfig {
 
 
+    // user details service to get user from database
+    private UserDetailsService userDetailsService;
+
+
+    // constructor based dependency injection
+    public SecurityConfig(UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
+
     // password encoder
     @Bean
     public static PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
+    }
+
+    // authentication manager will use user details service to authenticate user
+    @Bean
+    // no need to pass explicitly user details service, password encoder. spring will automatically pass it
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+        return configuration.getAuthenticationManager();
     }
 
 
@@ -43,21 +62,21 @@ public class SecurityConfig {
     }
 
     // in memory user password
-    @Bean
-    public UserDetailsService userDetailsService(){
-        // sunil is admin
-        UserDetails sunil= User.builder()
-                .username("admin")
-                .password(passwordEncoder().encode("admin"))
-                .roles("ADMIN")
-                .build();
-        // anil is simple user
-        UserDetails anil= User.builder()
-                .username("anil")
-                .password(passwordEncoder().encode("anil"))
-                .roles("User")
-                .build();
-
-                return new InMemoryUserDetailsManager(sunil,anil);
-    }
+//    @Bean
+//    public UserDetailsService userDetailsService(){
+//        // sunil is admin
+//        UserDetails sunil= User.builder()
+//                .username("admin")
+//                .password(passwordEncoder().encode("admin"))
+//                .roles("ADMIN")
+//                .build();
+//        // anil is simple user
+//        UserDetails anil= User.builder()
+//                .username("anil")
+//                .password(passwordEncoder().encode("anil"))
+//                .roles("User")
+//                .build();
+//
+//                return new InMemoryUserDetailsManager(sunil,anil);
+//    }
 }
