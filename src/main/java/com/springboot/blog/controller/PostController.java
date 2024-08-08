@@ -7,6 +7,7 @@ import com.springboot.blog.utils.AppConstants;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,7 +27,9 @@ public class PostController {
 
 
     // create post api
+
     @PostMapping("/")
+    @PreAuthorize("hasRole('ADMIN')") // only admin can create post
     // response entity is generic type
     public ResponseEntity<PostDto> create(@Valid @RequestBody PostDto postDto){
         // method of postService which return PostDto
@@ -63,12 +66,16 @@ public class PostController {
         return new ResponseEntity<>(res, HttpStatus.FOUND);
     }
 
+    // update post
+    @PreAuthorize("hasRole('ADMIN')") // only admin can update post
     @PutMapping("/{id}")
     public ResponseEntity<PostDto> updatePost(@PathVariable(name = "id") long id,@Valid @RequestBody PostDto postDto){
         PostDto res=postService.updatePost(id, postDto);
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
+    // delete post
+    @PreAuthorize("hasRole('ADMIN')") // only admin can delete post
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletePost(@PathVariable(name = "id") Long id){
         postService.deletePost(id);
