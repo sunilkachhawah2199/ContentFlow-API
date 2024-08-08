@@ -2,6 +2,7 @@ package com.springboot.blog.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -34,16 +35,14 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             // Configures authorization rules
             .authorizeHttpRequests(authorize -> authorize
-                // Allows unrestricted access to the signup and login endpoints
-                .requestMatchers("/signup", "/login").permitAll()
-                    .requestMatchers(HttpMethod.GET,"api/**").permitAll() // permit all get request
+                    .requestMatchers(HttpMethod.GET,"api/posts/**").permitAll() // permit all get request
                 // Requires authentication for all other requests
                 .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults()); // Configures HTTP Basic authentication | form will popup for id and password
         return http.build(); // Builds the SecurityFilterChain object
     }
 
-    // in memory user
+    // in memory user password
     @Bean
     public UserDetailsService userDetailsService(){
         // sunil is admin
